@@ -35,21 +35,26 @@ Ticket.prototype.findPrice = function() {
   var newRelease = ["Wreck Ralph 2", "Venom"];
 
   if(!this.ageGate()) {
-    console.log("no, your too young");
+    return "unavailable";
   } else {
     if (age > 64) {
       price -= 5;
+
     } else if (age < 13) {
       price -= 5;
+
     }
     if (this.matinee()) {
       price -= 3;
+
     }
     for (var movie = 0; movie < newRelease.length; movie++) {
       if  (this.movie === newRelease[movie]) {
         price += 5;
+
       }
     }
+    price = Math.floor(price * 100)/100 ;
     return price;
 
   }
