@@ -54,13 +54,29 @@ Ticket.prototype.findPrice = function() {
 
   }
 }
-
 //- - - - - - - - - - - - - - - - - - UI logic - - - - - - - - - - - - - - - - -
+
+function displayTicket(ticketToDisplay){
+  var title = ticketToDisplay.movie;
+  var showing = ticketToDisplay.time;
+  var finalPrice = ticketToDisplay.findPrice();
+
+  $("#ticket-movie-title").text(title);
+  $("#ticket-showtime").text(showing);
+  $("#ticket-price").text(finalPrice);
+  $(".results").show();
+}
 
 $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
-    var time = $("#theDate").val();
-    console.log(time);
+    var inputTime = $("#theDate").val();
+    // console.log(time);
+    var inputMovie = $("#movieTitle").val();
+    var inputAge = $("#inputAge").val();
+
+    var userTicket = new Ticket(inputMovie, inputAge, inputTime);
+
+    displayTicket(userTicket);
   });
 });
